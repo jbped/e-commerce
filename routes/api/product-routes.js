@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
   .then(data => res.json(data))
   .catch(err => {
     console.log(err)
-  })
+  });
 });
 
 // get one product
@@ -52,7 +52,7 @@ router.get('/:id', (req, res) => {
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
-    })
+    });
 });
 
 // create new product
