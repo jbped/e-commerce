@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
   // find all products
   // be sure to include its associated Category and Tag data
   Product.findAll({
+    attributes:["id", "product_name", "price", "stock"],
     include: [
       {
         model: Category,
@@ -27,6 +28,31 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  Product.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes:["id", "product_name", "price", "stock"],
+    include: [
+      {
+        model: Category,
+      },
+      {
+        model: Tag,
+      }
+    ]
+  })
+    .then(data => {
+      if (!data) {
+        res.status(404).json({ message: "No products were found with the provided Product ID." });
+        return;
+      }
+      res.json(data)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    })
 });
 
 // create new product
@@ -105,6 +131,22 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   // delete one product by its `id` value
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(data => {
+      if (!data) {
+        res.status(404).json({ message: "No products were found with the provided Product ID." });
+        return;
+      }
+      res.json(data)
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
