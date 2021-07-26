@@ -35,7 +35,7 @@ Once the application has been installed, open a new command line within the repo
 Here is a detailed walkthrough in the usage of the [E-Commerce DB](https://drive.google.com/file/d/1z3lacBlnRNPFIh2Pfv2FTQhKJUELesK3/view)
 
 ## Routes and JSONs
-Note that each of these routes are the subdirectory following your the domain that is hosting the database. Please insert your domain before the routes for proper usage. Additionally, all JSONs have validation if CONSTRAINED keys attempt to associate with an ID that doesn't exist it will throw an error.
+Note that each of these routes are the subdirectory following your the domain that is hosting the database. Please insert your domain before the routes for proper usage. Additionally, many tables have validation if CONSTRAINED keys attempt to associate with an ID that doesn't exist it will throw an error.
 ### Product 
 #### Get All Products
 * __Route:__ `/api/products`
